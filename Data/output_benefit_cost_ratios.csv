@@ -1,0 +1,25 @@
+Model,Region,Damage quantile,SLR adaptation,Discounting,Value,PRTP
+MIMOSA,World,5,with,low,0.5284013663570692,0.1%/yr
+MIMOSA,World,50,with,low,3.155089779949757,0.1%/yr
+MIMOSA,World,95,with,low,3.5387617781695155,0.1%/yr
+MIMOSA,World,5,with,medium,0.27041657569356015,1.5%/yr
+MIMOSA,World,50,with,medium,2.70460242618666,1.5%/yr
+MIMOSA,World,95,with,medium,2.964244791961615,1.5%/yr
+MIMOSA,World,5,with,high,-0.08120889760985998,3.0%/yr
+MIMOSA,World,50,with,high,2.3906586336471074,3.0%/yr
+MIMOSA,World,95,with,high,2.603851575152308,3.0%/yr
+REMIND,World,5,with,medium,0.9579920440512356,1.5%/yr
+REMIND,World,50,with,medium,3.9260939668110293,1.5%/yr
+REMIND,World,95,with,medium,4.963842740982418,1.5%/yr
+REMIND,World,5,with,high,0.6429583251862329,3.0%/yr
+REMIND,World,50,with,high,1.978159369489877,3.0%/yr
+REMIND,World,95,with,high,2.408117762721348,3.0%/yr
+WITCH,World,5,with,low,1.0000000000000002,0.1%/yr
+WITCH,World,50,with,low,1.7851152666760586,0.1%/yr
+WITCH,World,95,with,low,2.223572182234738,0.1%/yr
+WITCH,World,5,with,medium,1.0000000000000002,1.5%/yr
+WITCH,World,50,with,medium,1.535939893038981,1.5%/yr
+WITCH,World,95,with,medium,1.7953181679485186,1.5%/yr
+WITCH,World,5,with,high,,3.0%/yr
+WITCH,World,50,with,high,1.2601131440223312,3.0%/yr
+WITCH,World,95,with,high,1.480982800558821,3.0%/yr
