@@ -4,6 +4,7 @@ This repository contains the data required to reproduce all findings of the pape
 
 Specifically:
 * The scenario data (in preprocessed format combining scenario data from the three models MIMOSA, REMIND and WITCH): `Data/preprocessed_scenario_data.csv`
+  * (This file can be recreated by running `preprocess_data.py`. It combines data from the three scenarios and calculates indirect damage/mitigation costs, see Methods from paper.)
 * Output data:
   * Calculated Benefit-Cost Ratios: `Data/output_benefit_cost_ratios.csv`
   * Calculated benefits and costs over time: `Data/output_costs_and_benefits_over_time`
