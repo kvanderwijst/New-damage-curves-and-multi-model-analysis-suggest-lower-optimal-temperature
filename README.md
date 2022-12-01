@@ -10,3 +10,9 @@ Specifically:
   * Calculated benefits and costs over time: `Data/output_costs_and_benefits_over_time`
   * (These files can be recreated using `Benefit Cost Ratios.ipynb`)
 * All figures in the folder `Figures` (which can be recreated using `Paper figures.ipynb` and `Benefit Cost Ratios.ipynb`)
+
+## Requirements
+To run the scripts in this repository, the following packages are needed:
+* `pandas`
+* `plotly`
+* Either `cairosvg` or Inkscape to convert the SVG maps (Figure 1) to PNG files. If Inkscape is used, the command `inkscape` should be available from the command prompt.
