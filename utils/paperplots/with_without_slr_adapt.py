@@ -5,14 +5,15 @@ from ..plot import subplot_damages
 
 def fig_SI_with_vs_without_slr_adapt(data,):
     regions = ["R5.2ASIA", "R5.2EENA", "R5.2LAM", "R5.2MAF", "R5.2OECD"]
+    targets = ["rcp60", "rcp26"]
     fig = make_subplots(
         2,
         len(regions),
         column_titles=[
             "<b>R5-{}</b>".format(region[len("R5.2") :]) for region in regions
         ],
+        row_titles=["<b>{}</b><br> ".format(target.replace("rcp", "RCP").replace("60", " 6.0").replace("26", " 2.6")) for target in targets]
     )
-    targets = ["rcp60", "rcp26"]
     selection = data[
         data["Variable"].str.startswith("Damage")
         & data["Target"].isin(targets)

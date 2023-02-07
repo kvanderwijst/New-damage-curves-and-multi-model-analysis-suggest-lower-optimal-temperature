@@ -61,20 +61,25 @@ def add_ranges_and_median_lines(
     row=1,
     showlegend=True,
     make_2020_zero=False,
+    end_year=2100,
+    showrangelegend=None,
 ):
 
     # Empty legend for background range
-    fig.add_scatter(
-        x=[None],
-        y=[None],
-        fill="toself",
-        fillcolor="#000",
-        opacity=0.2,
-        name="<br>Range for 5-95th<br>damage quantile<br>",
-        mode="lines",
-        showlegend=showlegend,
-        line={"width": 0, "color": "rgba(0,0,0,0)"},
-    )
+    if showrangelegend is None:
+        showrangelegend = showlegend
+    if showrangelegend:
+        fig.add_scatter(
+            x=[None],
+            y=[None],
+            fill="toself",
+            fillcolor="#000",
+            opacity=0.2,
+            name="<br>Range for 5-95th<br>damage quantile<br>",
+            mode="lines",
+            showlegend=showlegend,
+            line={"width": 0, "color": "rgba(0,0,0,0)"},
+        )
 
     for i, (variable, _, factor) in enumerate(variables):
         # For each variable, calculate the medium value (first element in damage_quantiles),
@@ -84,7 +89,7 @@ def add_ranges_and_median_lines(
             subselection = data_selection[
                 (data_selection["Variable"] == variable)
                 & (data_selection["Model"] == model)
-                & (data_selection["Year"] <= 2100)
+                & (data_selection["Year"] <= end_year)
             ].copy()
             if make_2020_zero:
                 subselection.loc[subselection["Year"] == 2020, "Value"] = 0.0
