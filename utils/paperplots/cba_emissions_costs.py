@@ -2,6 +2,8 @@
 CBA plot: emissions on top row, damage+mitigation costs on bottom row
 """
 
+import pandas as pd
+
 from plotly.subplots import make_subplots
 
 from .. import colorutils, plot
@@ -46,6 +48,7 @@ def fig_cba_emissions_costs(
             None,
         ],
     )
+    source_data = []
 
     # 1. Emissions
 
@@ -65,7 +68,7 @@ def fig_cba_emissions_costs(
         subselection = selection_fig3[
             selection_fig3["Damage quantile"] == damage_quantile
         ]
-        emissions_and_temp_subplot(
+        _source = emissions_and_temp_subplot(
             fig3,
             subselection,
             ay_values=ay_values[f"p{damage_quantile}"],
@@ -75,6 +78,7 @@ def fig_cba_emissions_costs(
             maxyear=maxyear,
             show_info_box=show_info_box,
         )
+        source_data += [_source]
 
     # 3. Add damages
 
@@ -106,7 +110,7 @@ def fig_cba_emissions_costs(
         "variables_lights_map": variables_lights_map,
     }
     for i, damage_quantile in enumerate(damage_quantiles):
-        plot.subplot_damages(
+        _source = plot.subplot_damages(
             selection_fig3,
             fig3,
             2,
@@ -117,6 +121,7 @@ def fig_cba_emissions_costs(
             showlegend=i == 0,
             var_legend_title="<b>Cost type:</b>",
         )
+        source_data += [_source]
 
     # Add explanation annotation for combined damages REMIND
     # if show_info_box:
@@ -153,7 +158,7 @@ def fig_cba_emissions_costs(
         zerolinecolor="#888", zerolinewidth=2
     )
 
-    return fig3
+    return fig3, pd.concat(source_data)
 
 
 def emissions_and_temp_subplot(
@@ -236,3 +241,5 @@ def emissions_and_temp_subplot(
                 text=f"Temp. in {maxyear} <br>using each<br>IAM's internal<br>climate model",
                 **colorutils.explanation_annotation_style,
             )
+
+    return subselection_emissions

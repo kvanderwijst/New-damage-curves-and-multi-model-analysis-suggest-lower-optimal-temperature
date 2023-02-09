@@ -186,4 +186,4 @@ def fig_cba_temperature_sensitivity(
     )
     if with_peak:
         fig_cba_temps.update_layout(height=390)
-    return fig_cba_temps
+    return fig_cba_temps, selection

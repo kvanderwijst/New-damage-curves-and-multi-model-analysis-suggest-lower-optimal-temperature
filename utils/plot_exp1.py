@@ -97,17 +97,19 @@ def fig_exp1_damages_bars(
         "years": years,
         "models": models,
     }
+    source_data = []
     for i, rcp in enumerate(rcps):
         rcp_target = rcp.replace(" ", "").lower().replace(".", "")
-        subplot_damages(
+        _source_p5 = subplot_damages(
             data, fig, i + 1, 1, rcp_target, "5", **kwargs, showlegend=i == 0
         )
-        subplot_damages(
+        _source_p50 = subplot_damages(
             data, fig, i + 1, 2, rcp_target, "50", **kwargs, showlegend=False
         )
-        subplot_damages(
+        _source_p95 = subplot_damages(
             data, fig, i + 1, 3, rcp_target, "95", **kwargs, showlegend=False
         )
+        source_data += [_source_p5, _source_p50, _source_p95]
     (
         fig.update_layout(
             barmode="relative",
@@ -166,7 +168,7 @@ def fig_exp1_damages_bars(
     #     **explanation_annotation_style,
     # )
 
-    return fig
+    return fig, pd.concat(source_data)
 
 
 def fig_exp1_damages_bars_policybrief(

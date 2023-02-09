@@ -109,15 +109,6 @@ def subplot_damages(
     if custom_model_to_color is None:
         custom_model_to_color = model_to_color
 
-    selection = data[
-        (data["Target"] == target)
-        & (data["Damage quantile"] == damage_quantile)
-        & (data["Region"] == region)
-        & (data["Discounting"] == discounting)
-    ]
-    if slr_adapt is not None:
-        selection = selection[selection["SLR adaptation"] == slr_adapt]
-
     if variables_lights_map is None:
         variables_lights_map = {
             "MIMOSA": [
@@ -136,6 +127,21 @@ def subplot_damages(
             ],
         }
         variables_lights_map["WITCH"] = variables_lights_map["MIMOSA"]
+
+    unique_variables = list(
+        set([x[i][0] for x in variables_lights_map.values() for i in range(len(x))])
+    )
+    selection = data[
+        (data["Target"] == target)
+        & (data["Damage quantile"] == damage_quantile)
+        & (data["Region"] == region)
+        & (data["Discounting"] == discounting)
+        & (data["Year"].isin(years))
+        & (data["Model"].isin(models))
+        & (data["Variable"].isin(unique_variables))
+    ].drop(columns="Scenario")
+    if slr_adapt is not None:
+        selection = selection[selection["SLR adaptation"] == slr_adapt]
 
     legend_shades_of_gray = variables_lights_map[list(variables_lights_map.keys())[0]]
 
@@ -221,6 +227,8 @@ def subplot_damages(
         tickvals=list(xticks.values()), ticktext=list(xticks.keys()), row=row, col=col
     )
     fig.update_layout(legend={"traceorder": "normal", "font_size": 13})
+
+    return selection
 
 
 ###############
